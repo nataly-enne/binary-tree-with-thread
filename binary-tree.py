@@ -109,7 +109,7 @@ class Tree:
 arv = Tree()
 print("Programa Arvore Binaria")
 opcao = 0
-while opcao != 5:
+while opcao != 3:
      print("***********************************")
      print("Entre com a opcao:")
      print(" --- 1: Inserir")
