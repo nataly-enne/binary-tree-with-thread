@@ -1,3 +1,6 @@
+import random
+rand = random.random
+
 class No:
      
      def __init__(self, key, dir, esq):
@@ -103,23 +106,52 @@ class Tree:
               anterior = atual
               atual = atual.dir
          return anterior
-     
 #### fim da classe ####
 
+#### gerador de palavras [random generator] ####
+consoantes = 'bcdfghjlmnpqrstvxz'
+vogais = 'aeiou'
+ 
+def pegaletra(tipo):
+    if tipo == 0:
+        return consoantes[int(rand()*len(consoantes))]
+    if tipo == 1:
+        return vogais[int(rand()*len(vogais))]
+ 
+def gerapalavra():
+    tamanho = int(rand()*4+3)
+    atual = int(rand()*2)
+    palavra = ''
+    for letr in range(tamanho+1):
+        letra = pegaletra(atual)
+        if letra == 'q':
+            letra = 'qu'
+        palavra = palavra + letra
+        if atual == 0:
+            atual = 1
+        else:
+            atual = 0
+    return palavra
+
+#### fim ####
+
+
 arv = Tree()
-print("Programa Arvore Binaria")
+
 opcao = 0
 while opcao != 3:
+     word = gerapalavra()
+     arv.inserir(word)
+     print(word)
      print("***********************************")
      print("Entre com a opcao:")
-     print(" --- 1: Inserir")
+     print(" --- 1: Continuar a gerar")
      print(" --- 2: Pesquisar")
      print(" --- 3: Sair do programa")
      print("***********************************")
      opcao = int(input("-> "))
      if opcao == 1:
-          x = str(input(" Informe o valor -> "))
-          arv.inserir(x)
+          continue
      elif opcao == 2:
           x = str(input(" Informe o valor -> "))
           if arv.buscar(x) != None:
