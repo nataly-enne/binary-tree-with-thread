@@ -1,4 +1,6 @@
 import random
+import threading
+import time
 rand = random.random
 
 class No:
@@ -37,18 +39,18 @@ class Tree:
 
      def buscar(self, chave):
          if self.root == None:
-              return None # se arvore vazia
+              return None # se arvore for vazia
          atual = self.root # começa a procurar desde raiz
          while atual.item != chave: # enquanto nao encontrou
                if chave < atual.item:
-                    atual = atual.esq # caminha para esquerda
+                    atual = atual.esq # anda para esquerda
                else:
-                    atual = atual.dir # caminha para direita
+                    atual = atual.dir # anda para direita
                if atual == None:
                     return None # encontrou uma folha -> sai
          return atual  # terminou o laço while e chegou aqui é pq encontrou item    
 
-  
+  # aqueles negocios de in order, pre order e pos order
      def inOrder(self, atual):
          if atual != None:
               self.inOrder(atual.esq)
@@ -135,8 +137,17 @@ def gerapalavra():
 
 #### fim ####
 
+def inserirValores(arv):
+     while True:
+
+          print('algo')
+          time.sleep(2)
 
 arv = Tree()
+
+t = threading.Thread(target=inserirValores, args= (arv,))
+t.start()
+
 
 opcao = 0
 while opcao != 3:
@@ -145,7 +156,7 @@ while opcao != 3:
      print(word)
      print("***********************************")
      print("Entre com a opcao:")
-     print(" --- 1: Continuar a gerar")
+     print(" --- 1: Continuar a gerar palavras")
      print(" --- 2: Pesquisar")
      print(" --- 3: Sair do programa")
      print("***********************************")
