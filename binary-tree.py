@@ -139,9 +139,10 @@ def gerapalavra():
 
 def inserirValores(arv):
      while True:
-
-          print('algo')
-          time.sleep(2)
+          word = gerapalavra()
+          arv.inserir(word)
+          print('Palavra inserida: ', word)
+          time.sleep(3)
 
 arv = Tree()
 
@@ -150,24 +151,18 @@ t.start()
 
 
 opcao = 0
-while opcao != 3:
-     word = gerapalavra()
-     arv.inserir(word)
-     print(word)
+while opcao != 2:
      print("***********************************")
      print("Entre com a opcao:")
-     print(" --- 1: Continuar a gerar palavras")
-     print(" --- 2: Pesquisar")
-     print(" --- 3: Sair do programa")
+     print(" --- 1: Pesquisar")
+     print(" --- 2: Sair do programa")
      print("***********************************")
      opcao = int(input("-> "))
      if opcao == 1:
-          continue
-     elif opcao == 2:
           x = str(input(" Informe o valor -> "))
           if arv.buscar(x) != None:
                print(" Valor Encontrado")
           else:
-               print(" Valor nao encontrado!")	 
-     elif opcao == 3:
+               print("Valor nao encontrado!")	 
+     elif opcao == 2:
           break
