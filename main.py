@@ -1,4 +1,4 @@
-import threading
+from threading import Thread
 from time import sleep, time
 from node import  No, inserir, busca
 
@@ -23,7 +23,7 @@ def inserir_dados(root, arquivo):
 
 def main(root): 
     # thread que resulta na paralelização da inserção de dados na árvore.
-    thread = threading.Thread(target=inserir_dados, args=(root, ARQUIVO))
+    thread = Thread(target=inserir_dados, args=(root, ARQUIVO))
     thread.start()
 
 
@@ -38,7 +38,7 @@ def menu(root):
         except KeyboardInterrupt:
             break
 
-# chamando as funçoes e iniciando elas
+# chamando as funçoes e iniciando
 if __name__ == '__main__':
     root = No('__init__')
     main(root)
