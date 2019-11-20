@@ -1,45 +1,46 @@
-from threading import Thread
+import threading
 from time import sleep, time
-
-from node import Node, insert, search
-
-
-PATHNAME = 'dictionary_partial.txt'
+from node import  No, inserir, busca
 
 
-def insert_data(root, pathname):
-    start_time = time()
+ARQUIVO = 'texto_menor.txt'
 
-    with open(pathname) as fp:
-        line = fp.readline()
-        while line:
-            word = line.strip()
-            insert(root, Node(word))
+
+def inserir_dados(root, arquivo):
+    start_tempo = time()
+
+    with open(arquivo) as a:
+        linha = a.readline() # lê linha 
+        while linha:
+            palavra = linha.strip()
+            inserir(root, No(palavra)) # insere cada palavra em cada linha lida na árvore.
             # sleep(0.1)
-            line = fp.readline()
+            linha = a.readline()
 
-    end_time = time()
-    print(f"--- {(end_time - start_time)} seconds ---")
+    fim_tempo = time()
+    print(f"--- {(fim_tempo - start_tempo)} segundos decorridos ---")
 
 
-def main(root):
-    thread = Thread(target=insert_data, args=(root, PATHNAME))
+def main(root): 
+    # thread que resulta na paralelização da inserção de dados na árvore.
+    thread = threading.Thread(target=inserir_dados, args=(root, ARQUIVO))
     thread.start()
 
 
 def menu(root):
     while True:
         try:
-            value = str(input(""))
-            if not search(root, value) is None:
-                print("find.")
+            value = str(input(">"))
+            if not busca(root, value) is None:
+                print("Valor encontrado.")
             else:
-                print("not found!")
+                print("Valor não econtrado!")
         except KeyboardInterrupt:
             break
 
-
+# chamando as funçoes e iniciando elas
 if __name__ == '__main__':
-    root = Node('__init__')
+    root = No('__init__')
     main(root)
+    print("Digite uma palavra:")
     menu(root)

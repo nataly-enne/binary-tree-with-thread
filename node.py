@@ -1,38 +1,39 @@
-from threading import Thread
+import threading 
 
 
-class Node:
+class No:
     def __init__(self, key):
-        self.left = None
-        self.right = None
-        self.val = key
+        self.direita = None
+        self.esquerda = None
+        self.item = key
 
 
-def insert(root, node):
+def inserir(root, no):
     if root is None:
-        root = node
+        root = no # cria um novo Nó
     else:
-        if root.val < node.val:
-            if root.right is None:
-                root.right = node
+        if root.item < no.item:
+            if root.esquerda is None:
+                root.esquerda = no
+            # se nao for a raiz
             else:
-                # insert(root.right, node)
-                thread_right = Thread(target=insert, args=(root.right, node))
-                thread_right.start()
-        else:
-            if root.left is None:
-                root.left = node
+                # insere com a thread na esquerda
+                thread_esquerda = threading.Thread(target=inserir, args=(root.esquerda, no))
+                thread_esquerda.start()
+        else: # condicao ir para a direita (caso n tenha nenhum no ele cria)
+            if root.direita is None:
+                root.direita = no
             else:
-                # insert(root.left, node)
-                thread_left = Thread(target=insert, args=(root.left, node))
-                thread_left.start()
+                # insere com a thread na direita
+                thread_direita = threading.Thread(target=inserir, args=(root.direita, no))
+                thread_direita.start()
 
 
-def search(root, key):
-    if root is None or root.val == key:
-        return root
+def busca(root, key):
+    if root is None or root.item == key:
+        return root # se arvore for vazia
 
-    if root.val < key:
-        return search(root.right, key)
+    if root.item < key:
+        return busca(root.esquerda, key)  # anda para esquerda
 
-    return search(root.left, key)
+    return busca(root.direita, key) # anda para direita
