@@ -11,7 +11,7 @@ A ideia do projeto é: ao mesmo tempo que são inseridas palavras aleatórias na
 ### Funciona da seguinte maneira:
   1. Criar os nós da árvore com thread;
   2. Ler um arquivo de texto com, pelo menos, 20 mil palavras;
-  3. Armazenar as palavras na árvore com thread.
+  3. Armazenar as palavras na árvore com thread;
   4. Buscar quaisquer palavras na árvore;
   5. Ter um retorno para o usuário (se encontrou ou não a palavra buscada).
 
