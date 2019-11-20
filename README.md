@@ -20,7 +20,7 @@ A ideia do projeto é: ao mesmo tempo que são inseridas palavras aleatórias na
 
 ### Dentro do diretório do arquivo execute o main.py:
 ```bash
-python3 main.py # voê também pode só usar python ao invés de python3
+python3 main.py # você também pode só usar python ao invés de python3
 ```
 
 ## Colaboradores
